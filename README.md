@@ -24,6 +24,14 @@ dsh --profile web
 
 ---
 
+## 📸 截图 Screenshots
+
+| 🔊 消息朗读按钮（每条助手消息动作条） | ⚙️ 设置页（设置 → 插件 → 朗读） |
+|---|---|
+| <img src="assets/screenshots/message-btn.png" width="460"/> | <img src="assets/screenshots/settings.png" width="460"/> |
+
+---
+
 ## ✨ 功能 Features
 
 | 能力 | 说明 |
