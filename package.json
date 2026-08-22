@@ -1,0 +1,48 @@
+{
+  "name": "dsh-tts-reader",
+  "version": "0.1.0",
+  "description": "Text-to-speech reader for DeepSeek Harness web: read any assistant message aloud with the browser's native speechSynthesis — 8 Chinese voice presets, essence mode, auto-play. 语音朗读插件：用浏览器原生语音朗读每条助手消息。",
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "harness",
+    "plugin",
+    "dsh-client",
+    "tts",
+    "text-to-speech",
+    "speech-synthesis",
+    "reader",
+    "朗读"
+  ],
+  "license": "MIT",
+  "author": "wyidong",
+  "homepage": "https://github.com/wyidong/dsh-tts-reader",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wyidong/dsh-tts-reader.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wyidong/dsh-tts-reader/issues"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "README.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "client": {
+      "inject": [
+        "slots",
+        "sessions"
+      ],
+      "platform": "web"
+    }
+  }
+}
