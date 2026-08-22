@@ -29,30 +29,42 @@
 
 ## 📦 安装 Install
 
-> 说明：以本地 `file:` 方式安装（插件尚未发布到 npm registry）。
+> 插件声明了 `dsh.bundle`（自激活 patch）：安装后**无需手写 `cordis.patch.yml` 的 insert 条目**，把包名加进 profile bundles 即自动激活。尚未发布到 npm，用 GitHub 源安装。
+
+#### 方式 A：从 GitHub 安装（推荐）
 
 ```bash
-# 1. 克隆源码
-git clone https://github.com/wyidong/dsh-tts-reader.git
-cd dsh-tts-reader
-
-# 2. 安装到 dsh web profile（file: 指向源码目录）
-dsh plugin --profile web add "file:D:/path/to/dsh-tts-reader"
+# 锁定 v0.1.0（生产建议锁 tag，避免上游改动直接生效）
+dsh plugin --profile web add "github:wyidong/dsh-tts-reader#v0.1.0"
 ```
+
+把包名加入 profile 的 bundles（编辑 `~/.dsh/profiles/web/package.json`）：
+
+```jsonc
+"dsh": { "profile": { "bundles": [
+  "@deepseek-ai/dsh-base",
+  "@deepseek-ai/dsh-web-app",
+  "dsh-tts-reader"
+] } }
+```
+
+重启：`dsh --profile web`
+
+#### 方式 B：本地开发迭代（link:，改源码即生效）
+
+```bash
+dsh plugin --profile web add "link:D:/path/to/dsh-tts-reader"
+```
+
+开发期未走 bundle 时，需在 `~/.dsh/profiles/web/cordis.patch.yml` 手动挂载一次：
 
 ```yaml
-# 3. 编辑 ~/.dsh/profiles/web/cordis.patch.yml，把插件加入 Loader
 - insert:
-    - id: ui-tts-reader
-      name: 'dsh-tts-reader'
+    - id: tts-reader
+      name: dsh-tts-reader
 ```
 
-```bash
-# 4. 重启 dsh web（宿主扫描 dsh.client，将浏览器半边交付给前端）
-dsh --profile web
-```
-
-> 日常迭代：改 `lib/client.js` 后**刷新页面即生效**（宿主按请求从磁盘读取），无需重启。首次安装或改 patch 才需要重启宿主。
+> 日常迭代：改 `lib/client.js` 后**刷新页面即生效**（宿主按请求从磁盘读取），无需重启。首次安装或改 patch/依赖才需要重启宿主。
 
 ## 🎤 使用 Usage
 

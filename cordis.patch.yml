@@ -1,0 +1,5 @@
+# dsh-tts-reader bundle patch：把自己插进 profile 的插件树（自激活）
+# 声明在 package.json 的 dsh.bundle.patch，随包分发；装完即用，无需手动改 cordis.patch.yml
+- insert:
+    - id: tts-reader
+      name: dsh-tts-reader
