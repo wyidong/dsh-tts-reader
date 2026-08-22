@@ -9,20 +9,18 @@
 
 ---
 
-## 🚀 快速开始 Quickstart（30 秒装完即用）
+## 🚀 快速开始 Quickstart（一条命令装完即用）
 
 ```bash
-# 1. 安装（GitHub 源，无需 npm 账号）
+# 安装（GitHub 源，无需 npm 账号）
 dsh plugin --profile web add "github:wyidong/dsh-tts-reader#v0.1.0"
-
-# 2. 确认包已加入 profile 的 bundles（~/.dsh/profiles/web/package.json 的 dsh.profile.bundles）
-#    —— 插件声明了 dsh.bundle，作为 profile 层即自动激活，无需手写 cordis.patch.yml
-
-# 3. 重启
+# 重启
 dsh --profile web
 ```
 
 装完打开任意会话，每条助手消息动作条就有 **🔊** 按钮，点一下即可朗读本条正文。
+
+> 插件声明了 `dsh.bundle`：`dsh plugin add` 会**自动**把它加进 `dsh.profile.bundles` 并自激活（已由 dsh 源码 reconcilePlugins 确认），**无需手动改任何配置**。
 
 ---
 
@@ -49,15 +47,7 @@ dsh --profile web
 dsh plugin --profile web add "github:wyidong/dsh-tts-reader#v0.1.0"
 ```
 
-把包名加入 profile 的 bundles（编辑 `~/.dsh/profiles/web/package.json`）：
-
-```jsonc
-"dsh": { "profile": { "bundles": [
-  "@deepseek-ai/dsh-base",
-  "@deepseek-ai/dsh-web-app",
-  "dsh-tts-reader"
-] } }
-```
+插件声明了 `dsh.bundle`：`dsh plugin add` 会**自动**把它加进 `dsh.profile.bundles`，启动时自带 patch 自动激活——**无需手动改 `cordis.patch.yml`、也无需手动改 bundles**。
 
 重启：`dsh --profile web`
 
